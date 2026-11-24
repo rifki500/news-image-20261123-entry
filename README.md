@@ -6,39 +6,41 @@
 
 A one-day world news front page for [news-image-20261123](https://make.fun/bounty/news-image-20261123)
 on make.fun: **The World Today**, summing up Monday 23 November 2026 in a
-single 1024x1024 image — 35 stories across 8 regions, from the collapse of
-the COP31 climate talks in Antalya to Nvidia bringing back Jensen Huang.
+single 1024×1024 image — 35 stories across 8 regions.
+
+## The day in brief
+
+- **Hero — Business:** Nvidia reinstates Jensen Huang as CEO, 11 days after he
+  quit; shares jump 31% — the best day since 2003 — adding $952bn in value,
+  and lifting the S&P 500 by 4.7% and the Nasdaq by 6.5%.
+- **Global:** COP31 collapses in Antalya — no deal, the longest climate summit
+  ever and the first failure since Copenhagen 2009.
+- **Middle East:** Ukraine sinks the Russian corvette Merkury off Libya with
+  seven sea drones; Iran says it downed a US drone near Hormuz.
+- **Europe:** The Dymer rescue ends with a toll of 11; the EU unveils its 22nd
+  package of Russia sanctions.
+- **Americas:** Democrats clinch 258 House seats, their largest majority since
+  1992.
+
+Plus 30 briefs in three columns. Every story was verified against reporting
+dated 23 November 2026; stories whose event was earlier but which were first
+reported that day are marked † — see [BUILD-LOG.md](BUILD-LOG.md) for the
+full story list, sources, caveats and rejected candidates.
 
 ## How it works
 
-`main.py` (Python 3, standard library only) draws the whole front page from
-scratch: a hand-written 5x7 bitmap font, a small canvas, and a hand-rolled
-PNG encoder. No network, no files read, no timestamps anywhere — two runs
-write byte-identical output.
+`main.py` (Python 3, standard library only) copies the finished front page,
+`entry.png`, to the output directory. The page itself was drawn with Pillow
+(DejaVu fonts, flat vector-style pictograms) from the story list in
+`BUILD-LOG.md`. It takes no arguments and reads no files besides the PNG
+next to it:
 
 ```sh
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py   # writes out/entry.png
 ```
 
-## The day in brief
-
-- **Hero — Climate:** COP31 collapses in Antalya: no deal, as the fossil-fuel
-  fight sinks the talks; the longest climate summit ever.
-- **Markets:** Nvidia reinstates Jensen Huang as CEO; shares soar 30%, S&P 500
-  +4.8%.
-- **Middle East:** Iran vows to fight the US blockade; Trump warns strikes
-  could resume.
-- **Ukraine:** Zelenskyy confirms Ukraine hit a Russian warship in Libya's
-  Benghazi port.
-- **Americas:** Democrats take their largest House majority since 1992.
-
-Plus 30 briefs in three columns: the Dymer and Kryvyi Rih strikes, NATO and
-Poland, the capture of "Chapo Isidro", ICE arrests in Seattle, India's
-$1.62bn pledge to Nepal, South Korea's cabinet reshuffle, Kenya and DR Congo
-restoring ties, the SEC's Nvidia probe, and the NFL's Sunday scores.
-
-Sources: BBC, Reuters, AP, NYT, NPR, WSJ, Al Jazeera, Axios, WIRED,
-OkayAfrica — all stories as reported on 23 November 2026.
+`entry.png` is 1024×1024, 170,239 bytes. Rendering is deterministic: two runs
+produce byte-identical output (same sha256 — see BUILD-LOG.md).
 
 ## License
 
